@@ -6,6 +6,7 @@ Thumbs.db
 
 # Vuejs build result and test
 dist/
+test/unit/coverage
 
 # Editor Files #
 *~

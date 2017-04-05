@@ -79,38 +79,34 @@
 		}
 
 		@Lifecycle
-		mounted() {
-			let dimensions = (this.$el.parentNode as HTMLElement)
-				.getBoundingClientRect();
-
-			this.dimensions.height = dimensions.height;
-			this.dimensions.width = dimensions.height;
+		created() {
 			this.localisations = LocalisedStrings.getLocalisations()
 				.map(x => {
 					return {
 						"x1": 0,
 						"x2": 0,
 						"y1": 0,
-						"y2": (dimensions.height/2 - (dimensions.height/4)),
+						"y2": 0,
 						"rotation": 0,
 						"visibility": "hidden",
 						"text": x
 					};
 				});
-
-			/*  Issue where the css rotation-origin is not applied to the
-				elements. Applying a setTimeout resolves it since the item is
-				rendered, then changed. Does not affect the UX majorly since it
-				is invisible when all this happens. */
-			setTimeout(() => {
-				this.localisations.forEach((x, i) => {
-					i != 0 ? x.rotation = 180 : "";
-				});
-			}, 100);
 			this.localisations[0].rotation = 0;
 			this.localisations[0].visibility = "visible";
 		}
 
+		@Lifecycle
+		mounted() {
+			let dimensions = (this.$el.parentNode as HTMLElement)
+				.getBoundingClientRect();
+			this.dimensions.height = dimensions.height;
+			this.dimensions.width = dimensions.height;
+			this.localisations.forEach((x, i) => {
+				i != 0 ? x.rotation = 180 : "";
+				x.y2 = (dimensions.height/2 - (dimensions.height/4));
+			});
+		}
 		changeOption(): void {
 			this.calculateRotation();
 		}
