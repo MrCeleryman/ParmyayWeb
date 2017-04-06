@@ -1,7 +1,43 @@
 import Vue from "vue";
 import TriSwitch from "components/triSwitch";
 import "chai";
+import { Promise } from "es6-promise";
+
 const assert = chai.assert;
+
+// Based off of 200px by 200px
+const core = {
+    "x1": 0,
+    "x2": 0,
+    "y1": 0,
+    "y2": 5,
+    "rotation": 0
+};
+
+function assertRotations(localisations: String[], rotations: number[], visible: String[]): Promise<{}> {
+    return new Promise(resolve => {
+        ['parma', 'parmi', 'parmy'].forEach((parm, i) => {
+            assert.deepEqual(Object.assign(core, {
+            text: parm,
+            visibility: visible[i],
+            rotation: rotations[i]
+            }), localisations[i])
+        });
+        resolve();
+    });
+}
+
+function click(container) {
+    var clickEv = document.createEvent("MouseEvents");
+    clickEv.initEvent("click", true, true);
+    container.dispatchEvent(clickEv);
+
+    return new Promise(resolve => {
+        Vue.nextTick(() => {
+            resolve();
+        });
+    });
+}
 
 describe("triSwitch.vue", () => {
     beforeEach(() => {
@@ -14,7 +50,7 @@ describe("triSwitch.vue", () => {
         document.body.appendChild(main);
     });
 
-    it("Correctly hides all but the first Localisation", done => {
+    it("Correctly renders on load", done => {
         Vue.nextTick(() => {
             document.getElementById("app").style.width = "200px";
             document.getElementById("app").style.height = "200px";
@@ -22,22 +58,9 @@ describe("triSwitch.vue", () => {
             let vm = new TriSwitch().$mount("#app");
 
             assert.equal(vm.changeIndex, 0);
-            let core = {
-                "x1": 0,
-                "x2": 0,
-                "y1": 0,
-                "y2": 5,
-                "rotation": 0
-            };
-
-            ['parma', 'parmi', 'parmy'].forEach((parm, i) => {
-                assert.deepEqual(Object.assign(core, {
-                    text: parm,
-                    visibility: i == 0 ? 'visible' : 'hidden'
-                }), vm.localisations[i])
-            });
-
-            done();
+            assertRotations(vm.localisations, [0, 180, 180], ["visible", "hidden", "hidden"])
+                .then(x => done())
+                .catch(x => done(x));
         });
     });
 
@@ -47,39 +70,42 @@ describe("triSwitch.vue", () => {
             document.getElementById("app").style.height = "200px";
 
             let vm = new TriSwitch().$mount("#app");
-            Vue.nextTick(() => {
-                assert.equal(vm.changeIndex, 0);
-                ['parma', 'parmi', 'parmy'].forEach((parm, i) => {
-                    console.log(vm.localisations[i])
-                });
-                // Having trouble using .click() on SVG
-                var click_ev = document.createEvent("MouseEvents");
-                click_ev.initEvent("click", true, true);
-                vm.$el.dispatchEvent(click_ev);
-                let core = {
-                    "x1": 0,
-                    "x2": 0,
-                    "y1": 0,
-                    "y2": 5,
-                    "rotation": 0
-                };
 
-                ['parma', 'parmi', 'parmy'].forEach((parm, i) => {
-                    console.log(vm.localisations[i])
-                    /*console.log(Object.assign(core, {
-                        text: parm,
-                        visibility: i <= 1 ? 'visible' : 'hidden',
-                        rotation: [-180, 0, 180][i]
-                    }));
-                    assert.deepEqual(Object.assign(core, {
-                        text: parm,
-                        visibility: i <= 1 ? 'visible' : 'hidden',
-                        rotation: [-180, 0, 180][i]
-                    }), vm.localisations[i])*/
-                });
+            click(vm.$el)
+                .then(x => assertRotations(vm.localisations, 
+                    [-180, 0, 180], 
+                    ["visible", "visible", "hidden"]))
+                .then(x => done())
+                .catch(x => done(x));
+        });
+    });
 
-                done();
-            });
+    it("Cycles back to start", done => {
+        Vue.nextTick(() => {
+            document.getElementById("app").style.width = "200px";
+            document.getElementById("app").style.height = "200px";
+            let vm = new TriSwitch().$mount("#app");
+
+            click(vm.$el)
+                .then(x => assertRotations(vm.localisations, 
+                    [-180, 0, 180], 
+                    ["visible", "visible", "hidden"]))
+                .then(x => click(vm.$el))
+                .then(x => assertRotations(vm.localisations, 
+                    [-180, -180, 0], 
+                    ["visible", "visible", "visible"]))
+                .then(x => click(vm.$el))
+                .then(x => {
+                    return new Promise(resolve => {
+                        assert.equal(0, vm.changeIndex);
+                        resolve();
+                    })
+                })
+                .then(x => assertRotations(vm.localisations, 
+                    [-360, -180, -180], 
+                    ["visible", "visible", "visible"]))
+                .then(x => done())
+                .catch(x => done(x));
         });
     });
 });

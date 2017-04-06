@@ -31,6 +31,12 @@
 			"error",
 			"tab"
 		],
+		"no-trailing-spaces": [
+			"error",
+			{
+				"skipBlankLines": true
+			}
+		],
 		"linebreak-style": "off",
 		"quotes": [
 			"error",

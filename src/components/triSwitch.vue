@@ -73,7 +73,7 @@
 			let rotateIn = this.localisations[this.changeIndex];
 			this.afterInitialise(rotateIn);
 			rotateIn.rotation -= 180;
-
+			
 			LocalisedStrings.setLocalisation(newLocalisation);
 			this.$emit("changeOption", newLocalisation);
 		}
