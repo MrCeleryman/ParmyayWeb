@@ -14,14 +14,14 @@ appContainer.innerHTML = "<router-view></router-view>";
 document.body.appendChild(appContainer);
 /* eslint-disable no-new */
 Vue.use(VueMaterial);
-Vue.filter('truncate', function(value) {
-    var length = 70;
+Vue.filter("truncate", function (value) {
+	let length = 70;
 
-    if (value.length <= length) {
-        return value;
-    } else {
-        return value.substring(0, length) + '...';            
-    }
+	if (value.length <= length) {
+		return value;
+	} else {
+		return value.substring(0, length) + "...";
+	}
 });
 
 new Vue({

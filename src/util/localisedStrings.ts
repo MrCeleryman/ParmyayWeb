@@ -17,28 +17,36 @@ export class LocalisedStrings {
 		}
 	}
 
-	public static currentLocalisation = Object.assign({}, LocalisedStrings.LANG[LocalisedStrings.localisation]);
+	public static currentLocalisation = Object.assign(
+		{},
+		LocalisedStrings.LANG[LocalisedStrings.localisation]
+	);
 
 	public static subscribe(cb: Function) {
 		this.subscribers.push(cb);
 	}
 
-	public static getLocalisations = () => {
-		return Object.keys(LocalisedStrings.LANG);
-	}
-	public static getCurrentLocalisation = () => {
-		return LocalisedStrings.localisation;
-	}
+	public static getLocalisations = () => (
+		Object.keys(LocalisedStrings.LANG)
+	);
+	public static getCurrentLocalisation = () => (
+		LocalisedStrings.localisation
+	);
 
 	public static setLocalisation = (newLocalisation: AllowedLocalisations) => {
 		LocalisedStrings.localisation = newLocalisation;
 
 		// Make a copy of the static localisation translations, and assign them key-by-key to allow VueJS to detect changes.
-		const langCopy = Object.assign({}, LocalisedStrings.LANG[newLocalisation]);
+		const langCopy = Object.assign(
+			{},
+			LocalisedStrings.LANG[newLocalisation]
+		);
 		for (let i in langCopy) {
-			LocalisedStrings.currentLocalisation[i] = langCopy[i];
+			if (i != null) {
+				LocalisedStrings.currentLocalisation[i] = langCopy[i];
+			}
 		}
-		
+
 		LocalisedStrings.subscribers.forEach(x => x(newLocalisation));
 	}
 }

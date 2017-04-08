@@ -1,8 +1,8 @@
 import { Review, User, Venue } from "API";
 
 export class TempReviews {
-    public static getTempReviews(): Review[] {
-        let U1: User = {
+	public static getTempReviews(): Review[] {
+		let U1: User = {
 			id: 0,
 			userName: "MrParm",
 			password: null,
@@ -14,8 +14,22 @@ export class TempReviews {
 			deleted: null,
 			reviews: null
 		};
-		let U2: User = Object.assign({}, U1, { id: 1, userName: "Parminator"});
-		let U3: User = Object.assign({}, U1, { id: 2, userName: "PassTheParmy"});
+		let U2: User = Object.assign(
+			{},
+			U1,
+			{
+				id: 1,
+				userName: "Parminator"
+			}
+		);
+		let U3: User = Object.assign(
+			{},
+			U1,
+			{
+				id: 2,
+				userName: "PassTheParmy"
+			}
+		);
 
 		let V1: Venue = {
 			id: 0,
@@ -28,11 +42,32 @@ export class TempReviews {
 			deleted: null,
 			reviews: null
 		};
-		let V2: Venue = Object.assign({}, V1, { id: 1, venueName: "Red Room"});
-		let V3: Venue = Object.assign({}, V1, { id: 2, venueName: "Grand Central"});
-		let V4: Venue = Object.assign({}, V1, { id: 3, venueName: "Flying Cock"});
-		
-        let reviews = [{
+		let V2: Venue = Object.assign(
+			{},
+			V1,
+			{
+				id: 1,
+				venueName: "Red Room"
+			}
+		);
+		let V3: Venue = Object.assign(
+			{},
+			V1,
+			{
+				id: 2,
+				venueName: "Grand Central"
+			}
+		);
+		let V4: Venue = Object.assign(
+			{},
+			V1,
+			{
+				id: 3,
+				venueName: "Flying Cock"
+			}
+		);
+
+		let reviews = [{
 			id: 0,
 			userId: 0,
 			user: U1,
@@ -51,8 +86,15 @@ export class TempReviews {
 			venueId: 1,
 			venue: V2,
 			rating: 1,
-			notes: "Served soggy chicken on top of chips. Next to no effort put into preparation.",
-			image: "//truffle-assets.imgix.net/pxqrocxwsjcc_1tJ6fX5PFmKcMKgyoUqMWI_chicken-parmigiana_squareThumbnail_en.png?w=960&fl=progressive&fm=jpg",
+			notes: (
+				`Served soggy chicken on top of chips.
+				Next to no effort put into preparation.`
+			),
+			image: (
+				`//truffle-assets.imgix.net/pxqrocxwsjcc_1tJ6fX5
+				PFmKcMKgyoUqMWI_chicken-parmigiana_squareThumbna
+				il_en.png?w=960&fl=progressive&fm=jpg`
+			),
 			created: new Date(1490581405),
 			updated: new Date(1490581405),
 			deleted: null
@@ -63,8 +105,14 @@ export class TempReviews {
 			venueId: 0,
 			venue: V3,
 			rating: 5,
-			notes: "Beautiful moist chicken, perfect amount of sauce. 10/10",
-			image: "//images.media-allrecipes.com/userphotos/960x960/3757209.jpg",
+			notes: (
+				`Beautiful moist chicken, perfect 
+				amount of sauce. 10/10`
+			),
+			image: (
+				`//images.media-allrecipes.com/
+				userphotos/960x960/3757209.jpg`
+			),
 			created: new Date(1490581405),
 			updated: new Date(1490581405),
 			deleted: null
@@ -76,12 +124,16 @@ export class TempReviews {
 			venue: V4,
 			rating: 4,
 			notes: "Excellent value, 2 for $10 and you cannot go wrong.",
-			image: "//fthmb.tqn.com/9XjTwKEGGLwbIXQgj6hiVN_hkZ0=/960x0/filters:no_upscale()/about/blpoul94-56a496bf5f9b58b7d0d7b505.jpg",
+			image: (
+				`//fthmb.tqn.com/9XjTwKEGGLwbIXQgj6hiVN_hkZ0=/
+				960x0/filters:no_upscale()/about/blpoul94-56a4
+				96bf5f9b58b7d0d7b505.jpg`
+			),
 			created: new Date(1490581405),
 			updated: new Date(1490581405),
 			deleted: null
 		}];
 
-        return reviews;
-    }
+		return reviews;
+	}
 }
