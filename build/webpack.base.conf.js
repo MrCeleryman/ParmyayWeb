@@ -14,7 +14,10 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
     entry: {
-        app: './src/main.ts'
+        app: [
+            'babel-polyfill',
+            './src/main.ts'
+        ]
     },
     output: {
         path: config.build.assetsRoot,

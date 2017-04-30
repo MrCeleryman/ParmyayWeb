@@ -6,6 +6,7 @@ import "material-design-icons/iconfont/material-icons.css";
 import "vue-material/dist/vue-material.css";
 import "es5-shim";
 import "es6-shim";
+import "babel-polyfill";
 
 let appContainer = document.createElement("div");
 appContainer.id = "main";
