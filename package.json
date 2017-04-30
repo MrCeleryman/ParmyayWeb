@@ -14,8 +14,6 @@
     "av-ts": "^0.7.1",
     "babel-polyfill": "^6.23.0",
     "d3": "^4.7.4",
-    "es5-shim": "^4.5.9",
-		"es6-shim": "^0.35.3",
     "material-design-icons": "^3.0.1",
     "vue": "^2.2.6",
     "vue-material": "^0.7.1",
