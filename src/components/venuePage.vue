@@ -14,9 +14,13 @@
 			</md-input-container>
 			<md-input-container>
 				<label>Photo Of Parmy</label>
-				<md-file v-model="reviewModel.photo"></md-file>
+				<md-file v-model="reviewModel.image"></md-file>
 			</md-input-container>
-			<rating max="5" v-model="reviewModel.rating" />
+			<div>
+				<label>Rating: </label>
+				<rating max="5" v-model="reviewModel.rating" />
+			</div>
+			<md-button class="md-raised md-primary" type="submit">Submit</md-button>
 		</form>
 	</md-layout>
 	<md-layout md-column md-flex="25" md-flex-offset="50">
@@ -42,6 +46,11 @@
 		</md-layout>
 	</md-layout>
 </md-layout>
+
+<md-snackbar :md-position="'bottom center'" ref="snackbar" :md-duration="200000">
+	<span>Review Submitted</span>
+	<md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
+</md-snackbar>
 </main>
 </template>
 <style scoped>
@@ -56,11 +65,13 @@
 </style>
 	<script lang="ts">
 	import { Vue, Component, Lifecycle } from "av-ts";
+	import { mdSnackbar } from "vue-material";
 	import ReviewText from "components/reviewText";
 	import Rating from "components/rating";
 	import { LocalisedStrings } from "../util/localisedStrings";
 	import { TempReviews } from "../util/tempReviews";
 	import { Review, Venue } from "API";
+	import { Request } from "../util/parmyayRequest";
 
 	@Component({
 		components: {
@@ -71,7 +82,7 @@
 	export default class VenuePage extends Vue {
 		venue: Venue = null;
 		reviewModel = {
-			photo: null,
+			image: null,
 			notes: "",
 			rating: -1
 		};
@@ -96,7 +107,27 @@
 
 		// Submit review to server
 		submitReview(e: Event) {
-			console.log(e);
+			const review: Review = {
+				id: null,
+				userId: 1,
+				user: null,
+				venueId: this.venue.id,
+				venue: this.venue,
+				rating: this.reviewModel.rating,
+				notes: this.reviewModel.notes,
+				image: this.reviewModel.image,
+				created: null,
+				updated: null,
+				deleted: null
+			};
+			Request.makeReview(review)
+				.then(success => {
+					(this.$refs["snackbar"] as any).open();
+				})
+				.catch(err => {
+					// Handle error appropriately
+					(this.$refs["snackbar"] as any).open();
+				});
 		}
 	}
 </script>
