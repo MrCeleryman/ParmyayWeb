@@ -23,9 +23,10 @@
 			if (target.tagName == "I") {
 				target = target.parentElement;
 			}
-			
+
 			const icons = this.$refs["icons"] as Array<Vue>;
 			this.selectedIndex = icons.findIndex((x: Vue) => x.$el == target);
+			this.$emit("input", this.selectedIndex);
 		}
 	}
 </script>

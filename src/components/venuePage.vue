@@ -6,22 +6,22 @@
 		<h2>This is a venue page</h2>
 	</md-layout>
 	<md-layout md-row md-flex="25" md-column>
-		<form @submit.stop.prevent="submit">
+		<form @submit.stop.prevent="submitReview">
 			<h3>Review {{ venue.venueName }}</h3>
 			<md-input-container>
 				<label>Notes</label>
-				<md-input placeholder="My nice placeholder"></md-input>
+				<md-input placeholder="My nice placeholder" v-model="reviewModel.notes"></md-input>
 			</md-input-container>
 			<md-input-container>
-				<label>Single</label>
-				<md-file v-model="parmyPhoto"></md-file>
+				<label>Photo Of Parmy</label>
+				<md-file v-model="reviewModel.photo"></md-file>
 			</md-input-container>
-			<rating max="5"/>
+			<rating max="5" v-model="reviewModel.rating" />
 		</form>
 	</md-layout>
-	<md-layout md-column md-flex="25" md-flex-offset="50" md-gutter="8">
+	<md-layout md-column md-flex="25" md-flex-offset="50">
 		<h2>Recent Reviews</h2>
-		<md-layout v-for="review in venue.reviews" :key="review.id" md-row md-flex="25" class="reviewColumnItem" md-gutter>
+		<md-layout v-for="review in venue.reviews" :key="review.id" md-row md-flex="25" class="reviewColumnItem">
 			<md-card class="card" md-with-hover>
 				<md-card-header>
 					<div class="md-title">
@@ -70,8 +70,12 @@
 	})
 	export default class VenuePage extends Vue {
 		venue: Venue = null;
-		parmyPhoto = null;
-		
+		reviewModel = {
+			photo: null,
+			notes: "",
+			rating: -1
+		};
+
 		@Lifecycle
 		created() {
 			this.venue = this.updateCurrentVenue(+this.$route.params.id);
@@ -88,6 +92,11 @@
 			const foundVenue: Venue = TempReviews.getTempReviews()
 				.find(v => v.venue.id == newID).venue;
 			return foundVenue;
+		}
+
+		// Submit review to server
+		submitReview(e: Event) {
+			console.log(e);
 		}
 	}
 </script>
