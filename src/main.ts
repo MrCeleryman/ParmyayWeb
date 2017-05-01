@@ -15,7 +15,7 @@ document.body.appendChild(appContainer);
 /* eslint-disable no-new */
 Vue.use(VueMaterial);
 Vue.filter("truncate", function (value) {
-	let length = 70;
+	let length = 40;
 
 	if (value.length <= length) {
 		return value;

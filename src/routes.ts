@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Main from "./main";
 import FrontPage from "components/frontPage";
 import TestPage from "components/testPage";
+import VenuePage from "components/venuePage";
 
 Vue.use(VueRouter);
 
@@ -13,6 +14,9 @@ const routes = [{
 		path: "",
 		name: "main",
 		component: FrontPage
+	}, {
+		path: "/venue/:id",
+		component: VenuePage
 	}, {
 		path: "test",
 		name: "test",
