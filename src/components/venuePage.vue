@@ -90,19 +90,28 @@
 		@Lifecycle
 		created() {
 			this.venue = this.updateCurrentVenue(+this.$route.params.id);
+			if (this.venue == null) {
+				this.$router.push({ name: "error", params: { errorCode: "404" } });
+			}
 		}
 
 		// Builtin for routing. Called whenever the ID changes
 		beforeRouteUpdate(newID, oldID, next) {
 			this.venue = this.updateCurrentVenue(+this.$route.params.id);
-			next();
+
+			if (this.venue == null) {
+				next({ name: "error", params: { errorCode: "404" } });
+			} else {
+				next();
+			}
 		}
 
 		// Network request for venue matching ID
-		private updateCurrentVenue(newID: number) {
-			const foundVenue: Venue = TempReviews.getTempReviews()
-				.find(v => v.venue.id == newID).venue;
-			return foundVenue;
+		private updateCurrentVenue(newID: number): Venue {
+			const foundVenue: Review = TempReviews.getTempReviews()
+				.find(v => v.venue.id == newID);
+
+			return foundVenue != null ? foundVenue.venue : null;
 		}
 
 		// Submit review to server
