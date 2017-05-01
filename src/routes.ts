@@ -4,7 +4,6 @@ import Main from "./main";
 import FrontPage from "components/frontPage";
 import TestPage from "components/testPage";
 import VenuePage from "components/venuePage";
-
 import ErrorPage from "components/errorPage";
 
 Vue.use(VueRouter);
