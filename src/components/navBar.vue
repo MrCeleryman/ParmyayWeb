@@ -1,5 +1,5 @@
 <template>
-<md-toolbar class="md-accent">
+<md-toolbar class="md-primary">
     <router-link :to="{ name: 'test'}" class="router-link">
         <md-button class="md-icon-button">
             <md-icon>favorite</md-icon>

@@ -4,10 +4,7 @@
         <router-view></router-view>
   </div>
 </template>
-<style scoped>
-    #main {
-        position: relative;
-    }
+<style>
 </style>
 <script lang="ts">
     import { Vue, Component } from "av-ts";

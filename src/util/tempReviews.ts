@@ -14,16 +14,13 @@ export class TempReviews {
 			deleted: null,
 			reviews: null
 		};
-		let U2: User = Object.assign(
-			{},
-			U1,
-			{
+		let U2: User = Object.assign({},
+			U1, {
 				id: 1,
 				userName: "Parminator"
 			}
 		);
-		let U3: User = Object.assign(
-			{},
+		let U3: User = Object.assign({},
 			U1,
 			{
 				id: 2,
@@ -82,7 +79,7 @@ export class TempReviews {
 		}, {
 			id: 1,
 			userId: 0,
-			user: U1,
+			user: U2,
 			venueId: 1,
 			venue: V2,
 			rating: 1,
@@ -133,6 +130,14 @@ export class TempReviews {
 			updated: new Date(1490581405),
 			deleted: null
 		}];
+
+
+		V1.reviews = [
+			Object.assign({}, reviews[0]), Object.assign({}, reviews[1])
+		];
+		V2.reviews = [Object.assign({}, reviews[1])];
+		V3.reviews = [Object.assign({}, reviews[2])];
+		V4.reviews = [Object.assign({}, reviews[3])];
 
 		return reviews;
 	}
