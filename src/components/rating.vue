@@ -15,7 +15,7 @@
 		// Max number of starts
 		@Prop max;
 		// Current start selection
-		selectedIndex = 0;
+		selectedIndex = -1;
 
 		changeRating(e: Event) {
 			const icons = this.$refs["icons"] as Array<Vue>;
