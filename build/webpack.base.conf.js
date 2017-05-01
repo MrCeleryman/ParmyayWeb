@@ -35,9 +35,9 @@ module.exports = {
         modules: ["node_modules", "lib", "style"]
     },
     module: {
-        rules: [{
+            rules: [{
                 enforce: "pre",
-                test: /.vue$/,
+                test: /\.vue$|\.ts$/,
                 loader: "eslint-loader",
                 exclude: "/node_modules/"
             }, {
