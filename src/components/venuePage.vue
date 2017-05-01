@@ -51,6 +51,8 @@
 	<span>Review Submitted</span>
 	<md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
 </md-snackbar>
+
+<error-page v-if="!venue" :propErrorCode="404" />
 </main>
 </template>
 <style scoped>
@@ -68,6 +70,7 @@
 	import { mdSnackbar } from "vue-material";
 	import ReviewText from "components/reviewText";
 	import Rating from "components/rating";
+	import ErrorPage from "components/errorPage";
 	import { LocalisedStrings } from "../util/localisedStrings";
 	import { TempReviews } from "../util/tempReviews";
 	import { Review, Venue } from "API";
@@ -76,7 +79,8 @@
 	@Component({
 		components: {
 			"review-text": ReviewText,
-			"rating": Rating
+			"rating": Rating,
+			"error-page": ErrorPage
 		}
 	})
 	export default class VenuePage extends Vue {
@@ -90,20 +94,11 @@
 		@Lifecycle
 		created() {
 			this.venue = this.updateCurrentVenue(+this.$route.params.id);
-			if (this.venue == null) {
-				this.$router.push({ name: "error", params: { errorCode: "404" } });
-			}
 		}
 
 		// Builtin for routing. Called whenever the ID changes
 		beforeRouteUpdate(newID, oldID, next) {
 			this.venue = this.updateCurrentVenue(+this.$route.params.id);
-
-			if (this.venue == null) {
-				next({ name: "error", params: { errorCode: "404" } });
-			} else {
-				next();
-			}
 		}
 
 		// Network request for venue matching ID

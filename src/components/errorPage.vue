@@ -4,15 +4,18 @@
 	</div>
 </template>
 <script lang="ts">
-	import { Vue, Component, Lifecycle } from "av-ts";
+	import { Vue, Component, Prop, Lifecycle } from "av-ts";
 	
 	@Component()
 	export default class ErrorPage extends Vue {
-		errorName = "asdf";
+		@Prop
+		propErrorCode;
+
+		errorName = "";
 
 		@Lifecycle
 		created() {
-			this.errorName = this.$route.params.errorCode;
+			this.errorName = this.$route.params.errorCode || this.propErrorCode;
 		}
 		beforeRouteUpdate(newID, oldID, next) {
 			if (newID != oldID) {
