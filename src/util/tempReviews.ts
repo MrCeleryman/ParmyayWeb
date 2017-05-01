@@ -15,7 +15,7 @@ export class TempReviews {
 			reviews: null
 		};
 		let U2: User = Object.assign({},
-			U1,{
+			U1, {
 				id: 1,
 				userName: "Parminator"
 			}
@@ -132,7 +132,9 @@ export class TempReviews {
 		}];
 
 
-		V1.reviews = [Object.assign({}, reviews[0]), Object.assign({}, reviews[1])];
+		V1.reviews = [
+			Object.assign({}, reviews[0]), Object.assign({}, reviews[1])
+		];
 		V2.reviews = [Object.assign({}, reviews[1])];
 		V3.reviews = [Object.assign({}, reviews[2])];
 		V4.reviews = [Object.assign({}, reviews[3])];
