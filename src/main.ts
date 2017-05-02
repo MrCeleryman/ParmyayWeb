@@ -15,10 +15,9 @@ document.body.appendChild(appContainer);
 /* eslint-disable no-new */
 Vue.use(VueMaterial);
 
-// TODO: Get key
 Vue.use(VueGoogleMaps, {
 	load: {
-		key: ""
+		key: "AIzaSyCbL-9rVtENi8vIr3R2_yo-UpQukOvamas"
 	}
 });
 
