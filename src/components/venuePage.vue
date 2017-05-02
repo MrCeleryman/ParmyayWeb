@@ -4,6 +4,12 @@
 	<md-layout md-row md-flex="100">
 		<h1>{{ venue.venueName }}</h1>
 		<h2>This is a venue page</h2>
+		<gmap-map
+			:center="{lat:venue.latitude, lng:venue.longitude}"
+  			:zoom="18"
+  			map-type-id="terrain"
+  			style="width: 500px; height: 300px">
+		</gmap-map>
 	</md-layout>
 	<md-layout md-row md-flex="25" md-column>
 		<form @submit.stop.prevent="submitReview">
@@ -99,6 +105,7 @@
 		// Builtin for routing. Called whenever the ID changes
 		beforeRouteUpdate(newID, oldID, next) {
 			this.venue = this.updateCurrentVenue(+this.$route.params.id);
+			Vue["$gmapDefaultResizeBus"].$emit("resize");
 		}
 
 		// Network request for venue matching ID

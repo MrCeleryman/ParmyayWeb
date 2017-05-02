@@ -1,6 +1,7 @@
 import Vue from "vue";
 import router from "./routes";
 import VueMaterial from "vue-material";
+import * as VueGoogleMaps from "vue2-google-maps";
 
 import "material-design-icons/iconfont/material-icons.css";
 import "vue-material/dist/vue-material.css";
@@ -13,6 +14,14 @@ appContainer.innerHTML = "<router-view></router-view>";
 document.body.appendChild(appContainer);
 /* eslint-disable no-new */
 Vue.use(VueMaterial);
+
+// TODO: Get key
+Vue.use(VueGoogleMaps, {
+	load: {
+		key: ""
+	}
+});
+
 Vue.filter("truncate", function (value) {
 	let length = 40;
 
