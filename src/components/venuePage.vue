@@ -1,10 +1,12 @@
 <template>
 <main>
 <md-layout v-if="venue">
-	<md-layout md-row md-flex="100">
+	<md-layout md-row md-flex="75">
 		<h1>{{ venue.venueName }}</h1>
 		<h2>This is a venue page</h2>
-		<gmap-map
+	</md-layout>
+	<md-layout md-row md-flex="25">
+			<gmap-map
 			:center="{lat:venue.latitude, lng:venue.longitude}"
   			:zoom="18"
   			map-type-id="terrain"
