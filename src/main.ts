@@ -7,11 +7,7 @@ import "material-design-icons/iconfont/material-icons.css";
 import "vue-material/dist/vue-material.css";
 import "babel-polyfill";
 
-let appContainer = document.createElement("div");
-appContainer.id = "main";
-appContainer.innerHTML = "<router-view></router-view>";
-document.body.appendChild(appContainer);
-
+// Global scoped addons
 Vue.use(VueMaterial);
 Vue.use(VueGoogleMaps, {
 	load: {
@@ -25,7 +21,10 @@ Vue.filter("truncate", value => {
 	return value.length < maxLength ? value : truncation;
 });
 
-
+let appContainer = document.createElement("div");
+appContainer.id = "main";
+appContainer.innerHTML = "<router-view></router-view>";
+document.body.appendChild(appContainer);
 new Vue({
 	router: Router,
 	el: "#main"
