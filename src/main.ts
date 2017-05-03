@@ -11,7 +11,7 @@ import "babel-polyfill";
 Vue.use(VueMaterial);
 Vue.use(VueGoogleMaps, {
 	load: {
-		key: "AIzaSyCbL-9rVtENi8vIr3R2_yo-UpQukOvamas"
+		key: GOOGLE_API_KEY
 	}
 });
 

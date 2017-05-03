@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Main from "./main";
+import Main from "src/main";
 import FrontPage from "components/frontPage";
 import TestPage from "components/testPage";
 import VenuePage from "components/venuePage";

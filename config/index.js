@@ -2,6 +2,10 @@
 var path = require('path')
 
 module.exports = {
+	settings: {
+		GOOGLE_API_KEY: "'AIzaSyCbL-9rVtENi8vIr3R2_yo-UpQukOvamas'",		
+		API_URL: "'localhost/api'"
+	},
 	build: {
 		env: require('./prod.env'),
 		index: path.resolve(__dirname, '../dist/index.html'),

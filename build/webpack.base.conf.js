@@ -21,7 +21,7 @@ module.exports = {
 	},
 	output: {
 		path: config.build.assetsRoot,
-		publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
+		publicPath: env === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
 		filename: './[name].[hash].js'
 	},
 	resolve: {
@@ -65,8 +65,16 @@ module.exports = {
 				limit: 10000,
 				name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
 			}
-		}
-
-		]
-	}
+		}]
+	},
+	plugins: [
+		new webpack.DefinePlugin({
+			'development': {
+				NODE_ENV: env
+			},
+			// Global variables for app
+			API_URL: config.settings.API_URL,
+			GOOGLE_API_KEY: config.settings.GOOGLE_API_KEY
+		})
+	]
 }

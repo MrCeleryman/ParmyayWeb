@@ -50,9 +50,6 @@ module.exports = merge(baseWebpackConfig, {
 	},
 	devtool: false,
 	plugins: [
-		new webpack.DefinePlugin({
-			'process.env': config.dev.env
-		}),
 		// https://github.com/glenjamin/webpack-hot-middleware#installation--usage
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
