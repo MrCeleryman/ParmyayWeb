@@ -46,7 +46,7 @@ module.exports = {
 			options: {
 				appendTsSuffixTo: [/\.vue$/]
 			},
-			include: [path.resolve(__dirname, "../"), path.resolve(__dirname, "../typings/modules")],
+			include: [path.resolve(__dirname, "../")],
 			exclude: /node_modules/
 		}, {
 			test: /\.json$/,

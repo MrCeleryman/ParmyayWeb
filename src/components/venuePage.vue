@@ -6,11 +6,9 @@
 		<h2>This is a venue page</h2>
 	</md-layout>
 	<md-layout md-row md-flex="25">
-			<gmap-map
-			:center="{lat:venue.latitude, lng:venue.longitude}"
-  			:zoom="18"
-  			map-type-id="terrain"
-  			style="width: 500px; height: 300px">
+			<gmap-map :center="{lat: venue.latitude, lng: venue.longitude}"
+				style="width: 100%; height: 300px"
+				:zoom="18">
 				<gmap-marker :position="{lat:venue.latitude, lng:venue.longitude}" />
 		</gmap-map>
 	</md-layout>

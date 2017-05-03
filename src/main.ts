@@ -1,11 +1,16 @@
 import Vue from "vue";
 import Router from "./routes";
 import VueMaterial from "vue-material";
-import VueGoogleMaps from "vue2-google-maps";
+import * as VueGoogleMaps from "vue2-google-maps";
 
 import "material-design-icons/iconfont/material-icons.css";
 import "vue-material/dist/vue-material.css";
 import "babel-polyfill";
+
+let appContainer = document.createElement("div");
+appContainer.id = "main";
+appContainer.innerHTML = "<router-view></router-view>";
+document.body.appendChild(appContainer);
 
 Vue.use(VueMaterial);
 Vue.use(VueGoogleMaps, {
@@ -16,13 +21,11 @@ Vue.use(VueGoogleMaps, {
 
 Vue.filter("truncate", value => {
 	const maxLength = 40;
-	return value.length <= length ? value : value.substring(0, length) + "...";
+	const truncation = value.substring(0, maxLength) + "...";
+	return value.length < maxLength ? value : truncation;
 });
 
-let appContainer = document.createElement("div");
-appContainer.id = "main";
-appContainer.innerHTML = "<router-view></router-view>";
-document.body.appendChild(appContainer);
+
 new Vue({
 	router: Router,
 	el: "#main"
