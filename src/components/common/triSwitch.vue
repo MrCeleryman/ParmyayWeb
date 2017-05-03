@@ -40,7 +40,7 @@
 	import {
 		AllowedLocalisations,
 		LocalisedStrings
-	} from "../util/localisedStrings";
+	} from "../../util/localisedStrings";
 	import * as d3 from "d3";
 
 	@Component

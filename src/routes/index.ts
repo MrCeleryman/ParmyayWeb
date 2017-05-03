@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Main from "src/main";
-import FrontPage from "components/frontPage";
-import TestPage from "components/testPage";
-import VenuePage from "components/venuePage";
-import ErrorPage from "components/errorPage";
+import Main from "../main";
+import FrontPage from "../components/main/frontPage";
+import TestPage from "../components/main/testPage.vue";
+import VenuePage from "../components/venues/venuePage";
+import ErrorPage from "../components/common/errorPage";
 
 Vue.use(VueRouter);
 

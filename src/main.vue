@@ -8,8 +8,8 @@
 </style>
 <script lang="ts">
 	import { Vue, Component } from "av-ts";
-	import NavBar from "components/navBar";
-	import FrontPage from "components/frontPage";
+	import NavBar from "components/common/navBar";
+	import FrontPage from "components/main/frontPage";
 
 	@Component({
 		components: {
