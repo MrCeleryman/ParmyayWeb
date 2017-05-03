@@ -11,7 +11,7 @@
   			:zoom="18"
   			map-type-id="terrain"
   			style="width: 500px; height: 300px">
-                <gmap-marker :position="{lat:venue.latitude, lng:venue.longitude}" />
+				<gmap-marker :position="{lat:venue.latitude, lng:venue.longitude}" />
 		</gmap-map>
 	</md-layout>
 	<md-layout md-row md-flex="25" md-column>

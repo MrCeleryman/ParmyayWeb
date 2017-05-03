@@ -9,10 +9,10 @@
 </main>
 </template>
 <style scoped>
-    h1, h2 {
-        color: green;
+	h1, h2 {
+		color: green;
 		text-align: center;
-    }
+	}
 
 	.main-text {
 		position: absolute;

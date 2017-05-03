@@ -1,5 +1,5 @@
 <template>
-    <span>{{ notes | truncate }}</span>
+	<span>{{ notes | truncate }}</span>
 </template>
 <script lang="ts">
 	import { Vue, Component, Prop, Watch, Lifecycle } from "av-ts";
