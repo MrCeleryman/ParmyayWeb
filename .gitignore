@@ -13,7 +13,6 @@ test/unit/coverage
 *.swp
 .editorconfig
 .vs/
-.vscode/
 
 # Logs
 logs
