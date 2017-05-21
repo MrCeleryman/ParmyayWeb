@@ -17,6 +17,7 @@ const routes = [{
 	}, {
 		path: "/venue/:id",
 		name: "venue",
+		id: "venue",
 		component: VenuePage
 	}, {
 		path: "/error/:errorCode",

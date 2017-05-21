@@ -1,10 +1,10 @@
 <template>
 <md-toolbar class="md-primary">
-	<router-link :to="{ name: 'test'}" class="router-link">
+	<!--<router-link :to="{ name: 'venue'}" class="router-link">
 		<md-button class="md-icon-button">
 			<md-icon>favorite</md-icon>
 		</md-button>
-	</router-link>
+	</router-link>-->
 	<h2 class="md-title">
 		<router-link :to="{ name: 'main'}" class="router-link">
 			<span class="md-title-link">Parmyay</span>

@@ -25,7 +25,7 @@
 			</md-input-container>
 			<div>
 				<label>Rating: </label>
-				<rating max="5" v-model="reviewModel.rating" />
+				<rating propMax="5" v-model="reviewModel.rating" />
 			</div>
 			<md-button class="md-raised md-primary" type="submit">Submit</md-button>
 		</form>
