@@ -1,7 +1,7 @@
 # :globe_with_meridians: ParmyayWeb :globe_with_meridians:
 The web component for [Parmyay](https://github.com/MrCeleryman/Parmyay)
 
-![Build Status](https://travis-ci.org/MrCeleryman/ParmyayWeb.svg?branch=master)](https://travis-ci.org/MrCeleryman/ParmyayWeb)
+[![Build Status](https://travis-ci.org/MrCeleryman/ParmyayWeb.svg?branch=master)](https://travis-ci.org/MrCeleryman/ParmyayWeb)
 
 ## Stack
 
