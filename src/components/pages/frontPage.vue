@@ -36,9 +36,9 @@
 </style>
 	<script lang="ts">
 	import { Vue, Component, Watch } from "av-ts";
-	import ReviewText from "./reviewText";
-	import { LocalisedStrings } from "../util/localisedStrings";
-	import { TempReviews } from "../util/tempReviews";
+	import ReviewText from "../common/reviewText";
+	import { LocalisedStrings } from "../../util/localisedStrings";
+	import { TempReviews } from "../../util/tempReviews";
 	import { Review } from "API";
 
 	@Component({

@@ -1,9 +1,16 @@
 <template>
 <main>
 <md-layout v-if="venue">
-	<md-layout md-row md-flex="100">
+	<md-layout md-row md-flex="75">
 		<h1>{{ venue.venueName }}</h1>
 		<h2>This is a venue page</h2>
+	</md-layout>
+	<md-layout md-row md-flex="25">
+			<gmap-map :center="{lat: venue.latitude, lng: venue.longitude}"
+				style="width: 100%; height: 300px"
+				:zoom="18">
+				<gmap-marker :position="{lat:venue.latitude, lng:venue.longitude}" />
+		</gmap-map>
 	</md-layout>
 	<md-layout md-row md-flex="25" md-column>
 		<form @submit.stop.prevent="submitReview">
@@ -65,16 +72,16 @@
 		overflow: auto;
 	}
 </style>
-	<script lang="ts">
+<script lang="ts">
 	import { Vue, Component, Lifecycle } from "av-ts";
 	import { mdSnackbar } from "vue-material";
-	import ReviewText from "components/reviewText";
-	import Rating from "components/rating";
-	import ErrorPage from "components/errorPage";
-	import { LocalisedStrings } from "../util/localisedStrings";
-	import { TempReviews } from "../util/tempReviews";
+	import ReviewText from "@/components/common/reviewText";
+	import Rating from "@/components/common/rating";
+	import ErrorPage from "@/components/pages/errorPage";
+	import { LocalisedStrings } from "@/util/localisedStrings";
+	import { TempReviews } from "@/util/tempReviews";
 	import { Review, Venue } from "API";
-	import { Request } from "../util/parmyayRequest";
+	import { Request } from "@/util/parmyayRequest";
 
 	@Component({
 		components: {
@@ -99,6 +106,7 @@
 		// Builtin for routing. Called whenever the ID changes
 		beforeRouteUpdate(newID, oldID, next) {
 			this.venue = this.updateCurrentVenue(+this.$route.params.id);
+			Vue["$gmapDefaultResizeBus"].$emit("resize");
 		}
 
 		// Network request for venue matching ID

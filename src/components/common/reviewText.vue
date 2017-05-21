@@ -1,9 +1,9 @@
 <template>
-    <span>{{ notes | truncate }}</span>
+	<span>{{ notes | truncate }}</span>
 </template>
 <script lang="ts">
 	import { Vue, Component, Prop, Watch, Lifecycle } from "av-ts";
-	import { LocalisedStrings } from "../util/localisedStrings";
+	import { LocalisedStrings } from "../../util/localisedStrings";
 
 	@Component
 	export default class ReviewText extends Vue {

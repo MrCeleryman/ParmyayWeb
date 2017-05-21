@@ -1,10 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Main from "./main";
-import FrontPage from "components/frontPage";
-import TestPage from "components/testPage";
-import VenuePage from "components/venuePage";
-import ErrorPage from "components/errorPage";
+import Main from "../main";
+import FrontPage from "@/components/pages/frontPage";
+import VenuePage from "@/components/pages/venuePage";
+import ErrorPage from "@/components/pages/errorPage";
 
 Vue.use(VueRouter);
 
@@ -23,10 +22,6 @@ const routes = [{
 		path: "/error/:errorCode",
 		name: "error",
 		component: ErrorPage
-	}, {
-		path: "test",
-		name: "test",
-		component: TestPage
 	}]
 }];
 

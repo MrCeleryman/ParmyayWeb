@@ -1,3 +1,7 @@
+// App Constants
+declare const API_URL;
+declare const GOOGLE_API_KEY;
+
 declare module "API" {
 	export interface User {
 		id: number,
