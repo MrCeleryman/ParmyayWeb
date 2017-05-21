@@ -27,10 +27,10 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.vue', '.ts', '.css', '.scss'],
 		alias: {
+			'@': path.resolve(__dirname, '../src'),
 			'vue$': 'vue/dist/vue.common.js',
 			'src': path.resolve(__dirname, '../src'),
-			'assets': path.resolve(__dirname, '../src/assets'),
-			'components': path.resolve(__dirname, '../src/components')
+			'assets': path.resolve(__dirname, '../src/assets')
 		},
 		modules: ["node_modules", "lib", "style"]
 	},

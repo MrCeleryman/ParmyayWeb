@@ -1,5 +1,5 @@
 import Vue from "vue";
-import TriSwitch from "components/triSwitch";
+import TriSwitch from "@/components/common/triSwitch";
 import "chai";
 import { Promise } from "es6-promise";
 

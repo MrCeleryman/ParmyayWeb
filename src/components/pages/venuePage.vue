@@ -72,16 +72,16 @@
 		overflow: auto;
 	}
 </style>
-	<script lang="ts">
+<script lang="ts">
 	import { Vue, Component, Lifecycle } from "av-ts";
 	import { mdSnackbar } from "vue-material";
-	import ReviewText from "../common/reviewText";
-	import Rating from "./rating";
-	import ErrorPage from "../common/errorPage";
-	import { LocalisedStrings } from "../../util/localisedStrings";
-	import { TempReviews } from "../../util/tempReviews";
+	import ReviewText from "@/components/common/reviewText";
+	import Rating from "@/components/common/rating";
+	import ErrorPage from "@/components/pages/errorPage";
+	import { LocalisedStrings } from "@/util/localisedStrings";
+	import { TempReviews } from "@/util/tempReviews";
 	import { Review, Venue } from "API";
-	import { Request } from "../../util/parmyayRequest";
+	import { Request } from "@/util/parmyayRequest";
 
 	@Component({
 		components: {
