@@ -51,15 +51,18 @@ describe("triSwitch.vue", () => {
 		main = document.createElement("div");
 		main.id = "app";
 		document.body.appendChild(main);
+
+		let mountPoint = document.createElement("div");
+		mountPoint.id = "mountPoint";
+		main.appendChild(mountPoint);
 	});
 
 	it("Correctly renders on load", done => {
 		Vue.nextTick(() => {
-			document.getElementById("app").style.width = "200px";
-			document.getElementById("app").style.height = "200px";
-
-			const mountPoint = document.createElement("div");
-			document.getElementById("app").appendChild(mountPoint);
+			const mountPoint = document.getElementById("mountPoint");
+			const app = document.getElementById("app");
+			app.style.width = "200px";
+			app.style.height = "200px";
 			let vm = new TriSwitch().$mount(mountPoint);
 
 			assert.equal(vm.changeIndex, 0);
@@ -74,11 +77,10 @@ describe("triSwitch.vue", () => {
 
 	it("Correctly rotates on click", done => {
 		Vue.nextTick(() => {
-			document.getElementById("app").style.width = "200px";
-			document.getElementById("app").style.height = "200px";
-
-			const mountPoint = document.createElement("div");
-			document.getElementById("app").appendChild(mountPoint);
+			const mountPoint = document.getElementById("mountPoint");
+			const app = document.getElementById("app");
+			app.style.width = "200px";
+			app.style.height = "200px";
 			let vm = new TriSwitch().$mount(mountPoint);
 
 			click(vm.$el)
@@ -92,10 +94,10 @@ describe("triSwitch.vue", () => {
 
 	it("Cycles back to start", done => {
 		Vue.nextTick(() => {
-			document.getElementById("app").style.width = "200px";
-			document.getElementById("app").style.height = "200px";
-			const mountPoint = document.createElement("div");
-			document.getElementById("app").appendChild(mountPoint);
+			const mountPoint = document.getElementById("mountPoint");
+			const app = document.getElementById("app");
+			app.style.width = "200px";
+			app.style.height = "200px";
 			let vm = new TriSwitch().$mount(mountPoint);
 
 			click(vm.$el)
