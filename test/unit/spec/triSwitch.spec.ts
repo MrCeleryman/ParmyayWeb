@@ -10,7 +10,7 @@ const core = {
 	"x1": 0,
 	"x2": 0,
 	"y1": 0,
-	"y2": 5,
+	"y2": 50,
 	"rotation": 0
 };
 
@@ -46,19 +46,24 @@ describe("triSwitch.vue", () => {
 	beforeEach(() => {
 		let main = document.getElementById("app");
 		if (main) {
-			document.removeChild(main);
+			main.parentElement.removeChild(main);
 		}
 		main = document.createElement("div");
 		main.id = "app";
 		document.body.appendChild(main);
+
+		let mountPoint = document.createElement("div");
+		mountPoint.id = "mountPoint";
+		main.appendChild(mountPoint);
 	});
 
 	it("Correctly renders on load", done => {
 		Vue.nextTick(() => {
-			document.getElementById("app").style.width = "200px";
-			document.getElementById("app").style.height = "200px";
-
-			let vm = new TriSwitch().$mount("#app");
+			const mountPoint = document.getElementById("mountPoint");
+			const app = document.getElementById("app");
+			app.style.width = "200px";
+			app.style.height = "200px";
+			let vm = new TriSwitch().$mount(mountPoint);
 
 			assert.equal(vm.changeIndex, 0);
 			assertRotations(
@@ -72,10 +77,11 @@ describe("triSwitch.vue", () => {
 
 	it("Correctly rotates on click", done => {
 		Vue.nextTick(() => {
-			document.getElementById("app").style.width = "200px";
-			document.getElementById("app").style.height = "200px";
-
-			let vm = new TriSwitch().$mount("#app");
+			const mountPoint = document.getElementById("mountPoint");
+			const app = document.getElementById("app");
+			app.style.width = "200px";
+			app.style.height = "200px";
+			let vm = new TriSwitch().$mount(mountPoint);
 
 			click(vm.$el)
 				.then(x => assertRotations(vm.localisations,
@@ -88,9 +94,11 @@ describe("triSwitch.vue", () => {
 
 	it("Cycles back to start", done => {
 		Vue.nextTick(() => {
-			document.getElementById("app").style.width = "200px";
-			document.getElementById("app").style.height = "200px";
-			let vm = new TriSwitch().$mount("#app");
+			const mountPoint = document.getElementById("mountPoint");
+			const app = document.getElementById("app");
+			app.style.width = "200px";
+			app.style.height = "200px";
+			let vm = new TriSwitch().$mount(mountPoint);
 
 			click(vm.$el)
 				.then(x => assertRotations(vm.localisations,
