@@ -46,7 +46,7 @@ describe("triSwitch.vue", () => {
 	beforeEach(() => {
 		let main = document.getElementById("app");
 		if (main) {
-			document.removeChild(main);
+			main.parentElement.removeChild(main);
 		}
 		main = document.createElement("div");
 		main.id = "app";
@@ -58,7 +58,9 @@ describe("triSwitch.vue", () => {
 			document.getElementById("app").style.width = "200px";
 			document.getElementById("app").style.height = "200px";
 
-			let vm = new TriSwitch().$mount("#app");
+			const mountPoint = document.createElement("div");
+			document.getElementById("app").appendChild(mountPoint);
+			let vm = new TriSwitch().$mount(mountPoint);
 
 			assert.equal(vm.changeIndex, 0);
 			assertRotations(
@@ -75,7 +77,9 @@ describe("triSwitch.vue", () => {
 			document.getElementById("app").style.width = "200px";
 			document.getElementById("app").style.height = "200px";
 
-			let vm = new TriSwitch().$mount("#app");
+			const mountPoint = document.createElement("div");
+			document.getElementById("app").appendChild(mountPoint);
+			let vm = new TriSwitch().$mount(mountPoint);
 
 			click(vm.$el)
 				.then(x => assertRotations(vm.localisations,
@@ -90,7 +94,9 @@ describe("triSwitch.vue", () => {
 		Vue.nextTick(() => {
 			document.getElementById("app").style.width = "200px";
 			document.getElementById("app").style.height = "200px";
-			let vm = new TriSwitch().$mount("#app");
+			const mountPoint = document.createElement("div");
+			document.getElementById("app").appendChild(mountPoint);
+			let vm = new TriSwitch().$mount(mountPoint);
 
 			click(vm.$el)
 				.then(x => assertRotations(vm.localisations,
